@@ -18,6 +18,8 @@ pygame.init()
 click_sound = pygame.mixer.Sound("click.mp3")
 click_sound.set_volume(0.5)  # クリック音の音量を設定
 
+listener = None  # Listenerオブジェクトをグローバルに定義
+
 def click_left():
     global clicking_left, click_interval
     while clicking_left:
@@ -68,15 +70,17 @@ def on_release(x, y, button):
         print("Stopped clicking left.")
 
 def start_clicking():
-    global click_interval
+    global click_interval, listener
     click_interval = float(interval_entry.get())
     listener = Listener(on_click=on_click, on_release=on_release)
     listener.start()
 
 def stop_clicking():
-    global clicking_left, clicking_right
+    global clicking_left, clicking_right, listener
     clicking_left = False
     clicking_right = False
+    if listener is not None:
+        listener.stop()
 
 def toggle_click_sound():
     global play_click_sound

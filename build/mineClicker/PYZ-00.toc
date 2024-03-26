@@ -1,4 +1,4 @@
-('C:\\Users\\yztim\\OneDrive\\デスクトップ\\mine_clicker\\build\\mineClicker\\PYZ-00.pyz',
+('E:\\Documents\\mine_clicker\\build\\mineClicker\\PYZ-00.pyz',
  [('__future__',
    'C:\\Users\\yztim\\miniconda3\\Lib\\__future__.py',
    'PYMODULE'),
