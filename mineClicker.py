@@ -72,6 +72,8 @@ def on_release(x, y, button):
 def start_clicking():
     global click_interval, listener
     click_interval = float(interval_entry.get())
+    if listener is not None:
+        listener.stop()
     listener = Listener(on_click=on_click, on_release=on_release)
     listener.start()
 
