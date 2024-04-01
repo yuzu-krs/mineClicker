@@ -5,6 +5,8 @@ import ctypes
 import tkinter as tk
 import pygame
 from tkinter import messagebox
+import pystray
+from PIL import Image
 
 VK_CONTROL = 0x11
 
@@ -124,6 +126,25 @@ toggle_sound_button.pack()
 mouse_instruction_text = "マウスの戻るボタンは左クリック\n進むボタンは右クリックです"
 mouse_instruction_label = tk.Label(app, text=mouse_instruction_text)
 mouse_instruction_label.pack()
+
+# Hide the window when the close button is clicked
+def on_close_window():
+    app.withdraw()
+
+# Minimize to tray when the close button is clicked
+app.protocol("WM_DELETE_WINDOW", on_close_window)
+
+# Define the action to take when the tray icon is clicked
+# Define the action to take when the tray icon is clicked
+def on_click_tray_icon(icon, item):
+    app.deiconify()
+    icon.stop()
+
+# Create a tray icon
+image = Image.open(ICON_PATH)
+menu = pystray.Menu(pystray.MenuItem("Toggle", on_click_tray_icon))
+icon = pystray.Icon("Mine Clicker", image, "Mine Clicker", menu)
+icon.run()
 
 # Tkinterアプリケーションの実行
 app.mainloop()
